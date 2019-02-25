@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+  jupyter:
+    image: vassiliskrikonis/pyviz
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/opt/notebooks
+      - ./flinkcep/data:/opt/data
+    command: jupyter notebook /opt/notebooks --ip=0.0.0.0 --allow-root --no-browser
