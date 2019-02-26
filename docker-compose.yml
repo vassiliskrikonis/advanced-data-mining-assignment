@@ -7,7 +7,8 @@ services:
       - "8888:8888"
     volumes:
       - ./notebooks:/opt/notebooks
-      - ./flinkcep/data:/opt/data
+      - ./flinkcep/data:/opt/flinkcep-results
+      - ./results:/opt/rtec-results
     command: jupyter notebook /opt/notebooks --ip=0.0.0.0 --allow-root --no-browser
 
   yap:
