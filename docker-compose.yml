@@ -1,4 +1,5 @@
 version: '3.0'
+
 services:
   jupyter:
     image: vassiliskrikonis/pyviz
@@ -8,3 +9,8 @@ services:
       - ./notebooks:/opt/notebooks
       - ./flinkcep/data:/opt/data
     command: jupyter notebook /opt/notebooks --ip=0.0.0.0 --allow-root --no-browser
+
+  yap:
+    build: ./rtec
+    volumes:
+      - ./results:/opt/results

@@ -5,4 +5,4 @@
 :-['../utils/loadUtils.prolog'].
 
 run :-
-    continuousER('../data/dynamic/dataset_RTEC_maritime_example.txt','../results/maritime_results.txt','stats_times.txt','stats_input.txt',1443650401,1443851479,7200,7200).
+    continuousER('../data/dynamic/dataset_RTEC_maritime_example.txt','/opt/results/maritime_results.txt','/opt/results/stats_times.txt','/opt/results/stats_input.txt',1443650401,1443851479,7200,7200).
