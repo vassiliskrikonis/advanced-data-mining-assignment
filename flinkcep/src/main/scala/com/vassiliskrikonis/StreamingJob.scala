@@ -85,7 +85,14 @@ object StreamingJob {
       (e2.mmsi, e1.lon, e1.lat, e2.lon, e2.lat, e2.ts - e1.ts)
     }.writeAsCsv("data/gap_results" + (if (parallelism == 1) ".csv" else "/"))
 
-    val lowSpeed = signals.filter(_.speed < Events.Thresholds.LOW_SPEED)
+    val lowSpeed = signals
+      .filter(s => 0 < s.speed && s.speed < Events.Thresholds.LOW_SPEED)
+      .map(s => LowSpeed(s.mmsi, s.speed))
+
+    val stopped = signals.filter(_.speed == 0).map { s =>
+      val distance = distanceFromPorts(ports)(Point(s.lon, s.lat))
+      Stopped(s.mmsi, distance)
+    }
 
     // execute program
     env.execute("Flink Streaming Scala API Skeleton")
